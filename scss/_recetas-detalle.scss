@@ -116,9 +116,11 @@ main {
       color: map-get($titulo, color);
       font-family: map-get($titulo, font-family);
     }
-    h4 {
+    #recetita {
       color: map-get($titulo, color);
       font-family: map-get($titulo, font-family);
+      background-color: white;
+      font-size: 140%;
     }
     ol {
       line-height: 200%;
