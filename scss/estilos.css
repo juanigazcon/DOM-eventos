@@ -761,6 +761,25 @@ main div div .tortas {
   border: solid 1px #794245;
 }
 
+main div div .boton {
+  font-family: "lexend";
+  color: dimgray;
+  font-weight: bold;
+  background-color: #e1ceb2;
+  border: solid 2px #e1ceb2;
+  border-radius: 4px;
+  text-decoration: none;
+  /*           margin-left: 72%;
+ */
+}
+
+main div div h5 {
+  font-weight: bold;
+  color: #794245;
+  font-family: "lexend";
+  font-size: 140%;
+}
+
 main div div h3 {
   font-weight: bold;
   color: #794245;
