@@ -741,11 +741,38 @@ ul .header__recetas li {
   }
 }
 
+main .aparecer {
+  visibility: visible;
+}
+
 main .slide {
   -webkit-animation: slideInUp;
           animation: slideInUp;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+}
+
+main div #precioFinal {
+  color: #794245;
+  font-family: "lexend";
+  -webkit-animation: zoomIn;
+          animation: zoomIn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+main div table .boton {
+  text-align: center;
+  font-family: "lexend";
+  padding-left: 20%;
+  padding-right: 20%;
+  color: dimgray;
+  font-weight: bold;
+  background-color: #e1ceb2;
+  border: solid 2px #e1ceb2;
+  border-radius: 4px;
+  text-decoration: none;
+  line-height: 200%;
 }
 
 main div h2 {
@@ -755,6 +782,14 @@ main div h2 {
           animation: zoomIn;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+}
+
+main div div div .tabla {
+  color: dimgray;
+  font-weight: bolder;
+  font-family: "lexend";
+  padding-top: 5;
+  line-height: 120%;
 }
 
 main div div .tortas {
@@ -769,8 +804,9 @@ main div div .boton {
   border: solid 2px #e1ceb2;
   border-radius: 4px;
   text-decoration: none;
-  /*           margin-left: 72%;
- */
+  line-height: 200%;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 main div div h5 {
