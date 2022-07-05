@@ -764,8 +764,8 @@ main div #precioFinal {
 main div table .boton {
   text-align: center;
   font-family: "lexend";
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 15%;
+  padding-right: 15%;
   color: dimgray;
   font-weight: bold;
   background-color: #e1ceb2;
@@ -773,6 +773,7 @@ main div table .boton {
   border-radius: 4px;
   text-decoration: none;
   line-height: 200%;
+  margin-top: 20%;
 }
 
 main div h2 {

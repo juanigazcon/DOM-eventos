@@ -140,9 +140,10 @@ const CARRITO = [];
 let cantidadCarrito = 0;
 let precioCarrito = 0;
 const contenedorCarrito = document.getElementById("carrito-contenedor");
-const borrarCarrito = document.getElementById("vaciar-carrito");
-const confirmarCompra = document.getElementById("confirmar-carrito");
+const accionesCarrito = document.getElementById("acciones")
 const opcionesDePago = document.getElementById("opciones-pago");
+const newDiv = document.createElement("div");
+let botonesDisponibles = false;
 
 const PRODUCTO = document.querySelectorAll("#hola button")
 console.log(PRODUCTO)
@@ -153,16 +154,35 @@ btn.addEventListener("click", () => {
     let productoElegido = CATALOGO.find(item => item.id === parseInt(btn.dataset.id));
     console.log(productoElegido);
     
+    if (CARRITO.length == 0 && (!botonesDisponibles)) {
+        agregarBotones();
+    }
+    
     agregarAlCarrito(parseInt(btn.dataset.id));
+    
+    if (CARRITO.length == 0) {
+        removerBotones();
+    }
     console.log(CARRITO);
 });
 
 });
 
-confirmarCompra.addEventListener("click", confirmarCarrito);
+function agregarBotones() {
+botonesDisponibles = true;
+const buttons = document.createElement("div", "lala");
+buttons.innerHTML = `
+<button onclick="vaciarCarrito()" class="boton" id="botonC">Anular compra</button>
+<button onclick="confirmarCarrito()" class="boton">Confirmar compra</button>
+`
+const botonC = document.getElementById("botonC")
+accionesCarrito.appendChild(buttons);
+}
 
-borrarCarrito.addEventListener("click", vaciarCarrito);
-
+function removerBotones() {
+const eliminar = document.getElementsByClassName("lala");
+eliminar.className = "d-none";
+}
 
 function calcularCantidad() {
 
@@ -211,9 +231,9 @@ CARRITO.forEach(item => {
     const div = document.createElement("div");
     div.className = "tabla"
     div.innerHTML = `
-<tr>
+<tr">
 <td>${item.nombre} </td>
-<td>Cantidad: <span id=cantidad>${item.cantidad}</td>
+<td>Cantidad: <span id=cantidad>${item.cantidad}</span></td>
 <td>Precio: $${item.precio * item.cantidad}</td>
 <td><button onclick = "disminuirCantidad(${item.id})" class="boton">-</button></td>
 <td><button onclick = "aumentarCantidad(${item.id})" class="boton">+</button></td>
@@ -247,19 +267,22 @@ console.log(CARRITO);
 }
 
 function disminuirCantidad(id) {
-
 let productoModificado = CARRITO.find(productoModificado => productoModificado.id === id);
-productoModificado.cantidad--;
-actualizarCarrito();
-calcularPrecio();
-console.log(CARRITO);
+if (productoModificado.cantidad > 0) {
+    productoModificado.cantidad--;
+    actualizarCarrito();
+    calcularPrecio();
+    console.log(CARRITO);
+}
 
 }
 
 function confirmarCarrito() {
-const newDiv = document.createElement("div");
-newDiv.innerHTML =
-    `
+newDiv.innerHTML = "";
+
+if (CARRITO.length != 0) {
+    newDiv.innerHTML =
+        `
 <table>
 <tr>
 <td><h3 class="fw-bold">Seleccione la forma de pago</h3></td>
@@ -275,7 +298,13 @@ newDiv.innerHTML =
 </tr>
 </table>
 `
-opcionesDePago.appendChild(newDiv);
+    opcionesDePago.appendChild(newDiv);
+} else {
+    newDiv.innerHTML = `<h3>El carrito está vacío</h3>`
+    opcionesDePago.appendChild(newDiv);
+    
+    
+}
 
 }
 
@@ -285,19 +314,22 @@ console.log(CARRITO);
 actualizarCarrito();
 calcularPrecio();
 actualizarCarrito();
+removerBotones();
+newDiv.innerHTML = "";
+
 }
 
-function pagoEfectivo(){
-    const ultimoPrecio = document.getElementById("precioFinal");
-    ultimoPrecio.innerHTML= "El precio total abondando en efectivo es $" + precioCarrito * 0.90;
+function pagoEfectivo() {
+const ultimoPrecio = document.getElementById("precioFinal");
+ultimoPrecio.innerHTML = "El precio total abondando en efectivo es $" + precioCarrito * 0.90;
 }
 
-function pagoTransferencia(){
-    const ultimoPrecio = document.getElementById("precioFinal");
-    ultimoPrecio.innerHTML= "El precio total abondando en efectivo es $" + precioCarrito * 0.95;
+function pagoTransferencia() {
+const ultimoPrecio = document.getElementById("precioFinal");
+ultimoPrecio.innerHTML = "El precio total abondando con transferencia es $" + precioCarrito * 0.95;
 }
 
-function pagoMP(){
-    const ultimoPrecio = document.getElementById("precioFinal");
-    ultimoPrecio.innerHTML= "El precio total abondando en efectivo es $" + precioCarrito;
+function pagoMP() {
+const ultimoPrecio = document.getElementById("precioFinal");
+ultimoPrecio.innerHTML = "El precio total abondando con MercadoPago es $" + precioCarrito;
 }
